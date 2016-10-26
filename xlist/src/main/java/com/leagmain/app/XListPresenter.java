@@ -7,7 +7,7 @@ import android.view.View;
  * Created by leagmain on 10/17/2016.
  */
 
-public abstract class XListPresenter<VT extends View> {
+public abstract class XListPresenter<VIEW_TYPE extends View, DATA_TYPE> {
 
     private
     @IdRes
@@ -17,10 +17,12 @@ public abstract class XListPresenter<VT extends View> {
         this.viewId = viewId;
     }
 
-    public @IdRes int getViewId() {
+    public
+    @IdRes
+    int getViewId() {
         return viewId;
     }
 
-    public abstract void show(VT view, Object value);
+    public abstract void show(VIEW_TYPE view, DATA_TYPE value);
 
 }
