@@ -1,4 +1,4 @@
-package com.leagmain.app;
+package com.leagmain.xlist;
 
 /**
  * Created by Leon on 10/24/2016.

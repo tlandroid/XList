@@ -1,4 +1,4 @@
-package com.leagmain.app;
+package com.leagmain.xlist;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;

@@ -1,11 +1,5 @@
 package com.leagmain.app;
 
-import android.graphics.Color;
-import android.support.annotation.LayoutRes;
-import android.support.v7.widget.AppCompatCheckedTextView;
-import android.view.View;
-import android.widget.TextView;
-
 /**
  * Created by leagmain on 10/17/2016.
  */

@@ -1,4 +1,4 @@
-package com.leagmain.app;
+package com.leagmain.xlist;
 
 import android.support.annotation.IdRes;
 import android.view.View;

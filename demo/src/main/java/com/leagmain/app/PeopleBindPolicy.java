@@ -5,6 +5,8 @@ import android.support.v7.widget.AppCompatCheckedTextView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.leagmain.xlist.XListBindPolicy;
+
 /**
  * Created by Leon on 10/26/2016.
  */
@@ -23,7 +25,7 @@ public class PeopleBindPolicy extends XListBindPolicy<People> {
 
     @Override
     public int getEmptyRes() {
-        return R.layout.load_more;
+        return R.layout.empty;
     }
 
     @Override

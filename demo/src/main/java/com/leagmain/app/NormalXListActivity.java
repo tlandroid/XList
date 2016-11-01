@@ -4,6 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+
+import com.leagmain.xlist.XList;
+import com.leagmain.xlist.XListOnItemClickListener;
+import com.leagmain.xlist.XListOnLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +58,16 @@ public class NormalXListActivity extends AppCompatActivity {
 
         xList.policy(new PeopleBindPolicy())
                 .bind(peoples)
-                .enableLoadMore(new XListOnLoadMoreListener() {
+                .loadMore(new XListOnLoadMoreListener() {
                     @Override
                     public void onLoadMore() {
                         Log.i("Leagmain", "load more");
+                    }
+                })
+                .clickItem(new XListOnItemClickListener<People>() {
+                    @Override
+                    public void onItemClick(View v, int position, People data) {
+                        Log.i("Leagmain", "click " + position + ", " + data.getName());
                     }
                 });
     }

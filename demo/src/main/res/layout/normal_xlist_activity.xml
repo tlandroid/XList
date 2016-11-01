@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.leagmain.app.XList
+    <com.leagmain.xlist.XList
         android:id="@+id/xlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -1,6 +1,8 @@
-package com.leagmain.app;
+package com.leagmain.xlist;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.List;
 
@@ -8,9 +10,10 @@ import java.util.List;
  * Created by leagmain on 10/17/2016.
  */
 
-class XListHelper<DT> {
+public class XListHelper<DT> {
     private XList xList;
     private XListData<DT> adapter;
+    private XListOnLoadMoreListener onLoadMoreListener;
 
 
     public XListHelper(XList list, XListBindPolicy<DT> policy) {
@@ -19,6 +22,7 @@ class XListHelper<DT> {
         if (xList.getLayoutManager() == null)
             this.xList.setLayoutManager(new LinearLayoutManager(list.getContext()));
         this.xList.setAdapter(adapter);
+        this.xList.addOnScrollListener(new XList_DefaultScrollListener());
     }
 
     public XListHelper<DT> add(DT data) {
@@ -61,9 +65,38 @@ class XListHelper<DT> {
         return this;
     }
 
-    public XListHelper<DT> enableLoadMore(XListOnLoadMoreListener loadMoreListener) {
-        xList.setOnLoadMoreListener(loadMoreListener);
+    public XListHelper<DT> loadMore(XListOnLoadMoreListener loadMoreListener) {
+        onLoadMoreListener = loadMoreListener;
         adapter.setLoadMoreEnable(loadMoreListener != null);
         return this;
+    }
+
+    public XListHelper<DT> clickItem(XListOnItemClickListener<DT> onClickListener) {
+        adapter.setOnItemClickListener(onClickListener);
+        return this;
+    }
+
+
+    private class XList_DefaultScrollListener extends RecyclerView.OnScrollListener {
+        private XListScrollHelper scrollHelper;
+        private int previousDataSize = 0;
+
+        public XList_DefaultScrollListener() {
+            scrollHelper = new XListScrollHelper(xList);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            XListData xListData = (XListData) xList.getAdapter();
+            if (scrollHelper.isHitBottom() // hit bottom
+                    && !XListUtil.isEmpty(xList) // empty list
+                    && onLoadMoreListener != null) { // load more enabled
+                if (previousDataSize != xListData.getDataSize()) {
+                    previousDataSize = xListData.getDataSize();
+                    onLoadMoreListener.onLoadMore();
+                }
+            }
+        }
     }
 }
