@@ -10,17 +10,14 @@ import android.view.View;
 public abstract class XListBindPolicy<DATA_TYPE> {
 
 
-    public abstract
     @LayoutRes
-    int getNormalRes();
+    public abstract int getNormalRes();
 
-    public abstract
     @LayoutRes
-    int getFooterRes();
+    public abstract int getFooterRes();
 
-    public abstract
     @LayoutRes
-    int getEmptyRes();
+    public abstract int getEmptyRes();
 
     public abstract void forNormal(View itemView, int position, DATA_TYPE data);
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.leagmain.xlist.XList;
+import com.leagmain.xlist.XListHelper;
 import com.leagmain.xlist.XListOnItemClickListener;
 import com.leagmain.xlist.XListOnLoadMoreListener;
 
@@ -56,7 +57,7 @@ public class NormalXListActivity extends AppCompatActivity {
         peoples.add(new People("HeDong", "18", "male"));
 
 
-        xList.policy(new PeopleBindPolicy())
+        XListHelper.create(xList, new PeopleBindPolicy())
                 .bind(peoples)
                 .loadMore(new XListOnLoadMoreListener() {
                     @Override

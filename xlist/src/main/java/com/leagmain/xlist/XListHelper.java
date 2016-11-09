@@ -1,9 +1,11 @@
 package com.leagmain.xlist;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,6 +17,9 @@ public class XListHelper<DT> {
     private XListData<DT> adapter;
     private XListOnLoadMoreListener onLoadMoreListener;
 
+    public static <_DT> XListHelper<_DT> create(XList list, XListBindPolicy<_DT> policy) {
+        return new XListHelper<_DT>(list, policy);
+    }
 
     public XListHelper(XList list, XListBindPolicy<DT> policy) {
         this.xList = list;
@@ -65,6 +70,16 @@ public class XListHelper<DT> {
         return this;
     }
 
+    public XListHelper<DT> layoutManager(RecyclerView.LayoutManager layoutManager) {
+        xList.setLayoutManager(layoutManager);
+        return this;
+    }
+
+    public XListHelper<DT> linearLayoutManager(int width, int height) {
+        xList.setLayoutManager(XListLinearLayoutManager.create(xList.getContext(), width, height));
+        return this;
+    }
+
     public XListHelper<DT> loadMore(XListOnLoadMoreListener loadMoreListener) {
         onLoadMoreListener = loadMoreListener;
         adapter.setLoadMoreEnable(loadMoreListener != null);
@@ -73,6 +88,11 @@ public class XListHelper<DT> {
 
     public XListHelper<DT> clickItem(XListOnItemClickListener<DT> onClickListener) {
         adapter.setOnItemClickListener(onClickListener);
+        return this;
+    }
+
+    public XListHelper<DT> itemDecoration(RecyclerView.ItemDecoration decoration) {
+        xList.addItemDecoration(decoration);
         return this;
     }
 

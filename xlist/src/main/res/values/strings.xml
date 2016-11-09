@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">XList Lib</string>
+    <string name="empty_content">Content is empty!</string>
 </resources>

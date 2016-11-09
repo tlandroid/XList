@@ -22,9 +22,4 @@ public class XList extends RecyclerView {
     public XList(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
-
-
-    public <DATA_TYPE> XListHelper<DATA_TYPE> policy(XListBindPolicy<DATA_TYPE> policy) {
-        return new XListHelper<>(this, policy);
-    }
 }

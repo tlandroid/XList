@@ -6,26 +6,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.leagmain.xlist.XListBindPolicy;
+import com.leagmain.xlist.XListCommonBindPolicy;
 
 /**
  * Created by Leon on 10/26/2016.
  */
 
-public class PeopleBindPolicy extends XListBindPolicy<People> {
+public class PeopleBindPolicy extends XListCommonBindPolicy<People> {
 
     @Override
     public int getNormalRes() {
         return R.layout.people_item;
-    }
-
-    @Override
-    public int getFooterRes() {
-        return R.layout.load_more;
-    }
-
-    @Override
-    public int getEmptyRes() {
-        return R.layout.empty;
     }
 
     @Override
@@ -51,15 +42,5 @@ public class PeopleBindPolicy extends XListBindPolicy<People> {
                 sex.setChecked(true);
                 break;
         }
-    }
-
-    @Override
-    public void forFooter(View footer) {
-
-    }
-
-    @Override
-    public void forEmpty(View itemView) {
-
     }
 }
