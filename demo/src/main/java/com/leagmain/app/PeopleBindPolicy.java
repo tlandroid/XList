@@ -5,7 +5,6 @@ import android.support.v7.widget.AppCompatCheckedTextView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.leagmain.xlist.XListBindPolicy;
 import com.leagmain.xlist.XListCommonBindPolicy;
 
 /**

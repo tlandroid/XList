@@ -1,6 +1,5 @@
 package com.leagmain.xlist;
 
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
 
 /**

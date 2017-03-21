@@ -57,7 +57,7 @@ public class NormalXListActivity extends AppCompatActivity {
         peoples.add(new People("HeDong", "18", "male"));
 
 
-        XListHelper.create(xList, new PeopleBindPolicy())
+        XListHelper.setup(xList, new PeopleBindPolicy())
                 .bind(peoples)
                 .loadMore(new XListOnLoadMoreListener() {
                     @Override

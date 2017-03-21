@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 
 public class XList extends RecyclerView {
 
+    private XListHelper helper;
+
     public XList(Context context) {
         this(context, null);
     }
@@ -21,5 +23,13 @@ public class XList extends RecyclerView {
 
     public XList(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    void setHelper(XListHelper helper) {
+        this.helper = helper;
+    }
+
+    public XListHelper getHelper() {
+        return helper;
     }
 }

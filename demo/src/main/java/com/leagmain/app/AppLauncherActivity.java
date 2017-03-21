@@ -3,7 +3,6 @@ package com.leagmain.app;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +18,12 @@ import com.leagmain.xlist.XListHelper;
 import com.leagmain.xlist.XListOnItemClickListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AppLauncherActivity extends AppCompatActivity {
 
     private List<Class<? extends Activity>> demoList = new ArrayList<>();
-    private XListHelper<Class<? extends Activity>> listHelper;
+    private XListHelper listHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,7 @@ public class AppLauncherActivity extends AppCompatActivity {
         demoList.add(NormalXListActivity.class);
         demoList.add(NormalXListActivity.class);
 
-        listHelper = XListHelper.create((XList) findViewById(R.id.item_list), new DemoBindPolicy());
+        listHelper = XListHelper.setup((XList) findViewById(R.id.item_list), new DemoBindPolicy());
         listHelper.bind(demoList)
                 .linearLayoutManager(ViewGroup.LayoutParams.MATCH_PARENT, 100)
                 .itemDecoration(new DividerDecoration())

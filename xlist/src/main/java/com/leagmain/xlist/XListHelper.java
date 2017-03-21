@@ -1,27 +1,26 @@
 package com.leagmain.xlist;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by leagmain on 10/17/2016.
  */
 
-public class XListHelper<DT> {
+public class XListHelper {
     private XList xList;
-    private XListData<DT> adapter;
+    private XListData adapter;
     private XListOnLoadMoreListener onLoadMoreListener;
 
-    public static <_DT> XListHelper<_DT> create(XList list, XListBindPolicy<_DT> policy) {
-        return new XListHelper<_DT>(list, policy);
+    public static <DT> XListHelper setup(XList list, XListBindPolicy<DT> policy) {
+        XListHelper helper = new XListHelper(list, policy);
+        list.setHelper(helper);
+        return helper;
     }
 
-    public XListHelper(XList list, XListBindPolicy<DT> policy) {
+    private <DT> XListHelper(XList list, XListBindPolicy<DT> policy) {
         this.xList = list;
         this.adapter = new XListData<>(list.getContext(), policy);
         if (xList.getLayoutManager() == null)
@@ -30,68 +29,68 @@ public class XListHelper<DT> {
         this.xList.addOnScrollListener(new XList_DefaultScrollListener());
     }
 
-    public XListHelper<DT> add(DT data) {
+    public <DT> XListHelper add(DT data) {
         adapter.add(data);
         return this;
     }
 
-    public XListHelper<DT> addAll(List<DT> dataList) {
+    public <DT> XListHelper addAll(List<DT> dataList) {
         adapter.addAll(dataList);
         return this;
     }
 
-    public XListHelper<DT> addAt(int position, DT data) {
+    public <DT> XListHelper addAt(int position, DT data) {
         adapter.addAt(position, data);
         return this;
     }
 
-    public XListHelper<DT> replace(int position, DT data) {
+    public <DT> XListHelper replace(int position, DT data) {
         adapter.setData(position, data);
         return this;
     }
 
-    public XListHelper<DT> remove(int position) {
+    public XListHelper remove(int position) {
         adapter.remove(position);
         return this;
     }
 
-    public XListHelper<DT> clear() {
+    public XListHelper clear() {
         adapter.clear();
         return this;
     }
 
-    public XListHelper<DT> bind(List<DT> sourceList) {
+    public <DT> XListHelper bind(List<DT> sourceList) {
         adapter.setSource(sourceList);
         return this;
     }
 
-    public XListHelper<DT> bind(DT source) {
+    public <DT> XListHelper bind(DT source) {
         adapter.setSource(source);
         return this;
     }
 
-    public XListHelper<DT> layoutManager(RecyclerView.LayoutManager layoutManager) {
+    public <DT> XListHelper layoutManager(RecyclerView.LayoutManager layoutManager) {
         xList.setLayoutManager(layoutManager);
         return this;
     }
 
-    public XListHelper<DT> linearLayoutManager(int width, int height) {
+    public <DT> XListHelper linearLayoutManager(int width, int height) {
         xList.setLayoutManager(XListLinearLayoutManager.create(xList.getContext(), width, height));
         return this;
     }
 
-    public XListHelper<DT> loadMore(XListOnLoadMoreListener loadMoreListener) {
+    public <DT> XListHelper loadMore(XListOnLoadMoreListener loadMoreListener) {
         onLoadMoreListener = loadMoreListener;
         adapter.setLoadMoreEnable(loadMoreListener != null);
         return this;
     }
 
-    public XListHelper<DT> clickItem(XListOnItemClickListener<DT> onClickListener) {
+    public <DT> XListHelper clickItem(XListOnItemClickListener<DT> onClickListener) {
         adapter.setOnItemClickListener(onClickListener);
         return this;
     }
 
-    public XListHelper<DT> itemDecoration(RecyclerView.ItemDecoration decoration) {
+    public XListHelper itemDecoration(RecyclerView.ItemDecoration decoration) {
         xList.addItemDecoration(decoration);
         return this;
     }

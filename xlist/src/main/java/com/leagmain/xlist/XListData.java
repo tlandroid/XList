@@ -2,6 +2,7 @@ package com.leagmain.xlist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,19 +32,19 @@ class XListData<DATA_TYPE> extends RecyclerView.Adapter<XListViewHolder> {
         switch (viewType) {
             case VIEW_TYPES.FOOTER:
                 try {
-                    return new XListViewHolder(View.inflate(context, xListBindPolicy.getFooterRes(), null));
+                    return new XListViewHolder(LayoutInflater.from(context).inflate(xListBindPolicy.getFooterRes(), parent, false));
                 } catch (Exception e) {
                     throw new IllegalArgumentException(xListBindPolicy.getClass().getSimpleName() + " contains an invalid footer xml resource!");
                 }
             case VIEW_TYPES.EMPTY:
                 try {
-                    return new XListViewHolder(View.inflate(context, xListBindPolicy.getEmptyRes(), null));
+                    return new XListViewHolder(LayoutInflater.from(context).inflate(xListBindPolicy.getEmptyRes(), parent, false));
                 } catch (Exception e) {
                     throw new IllegalArgumentException(xListBindPolicy.getClass().getSimpleName() + " contains an invalid empty xml resource!");
                 }
             default: // normal
                 try {
-                    return new XListViewHolder(View.inflate(context, xListBindPolicy.getNormalRes(), null));
+                    return new XListViewHolder(LayoutInflater.from(context).inflate(xListBindPolicy.getNormalRes(), parent, false));
                 } catch (Exception e) {
                     throw new IllegalArgumentException(xListBindPolicy.getClass().getSimpleName() + " contains an invalid normal xml resource!");
                 }
@@ -91,6 +92,7 @@ class XListData<DATA_TYPE> extends RecyclerView.Adapter<XListViewHolder> {
     @Override
     public int getItemCount() {
         int itemCount = source.size();
+        if (itemCount == 0) itemCount++;
         if (enabledLoadMore) itemCount++;
         return itemCount;
     }
